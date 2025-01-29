@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PM Fried Chicken</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: sticky; /* Membuat header sticky */
+        top: 0; /* Posisi sticky di atas */
+        background-color: #f4f4f4; /* Latar belakang header */
+        z-index: 1000; /* Pastikan header di atas elemen lainnya */
+        padding: 10px 0; /* Padding untuk header */
+      }
+      .header img {
+        width: 80px; /* Ukuran logo */
+        height: auto;
+        margin-right: 10px; /* Jarak antara logo dan teks */
+      }
+      .header h1 {
+        color: #333;
+        margin: 0;
+      }
+      .slogan {
+        text-align: left;
+        color: #777;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+      .menu-item {
+        background-color: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center; /* Center all content */
+      }
+      .menu-item img {
+        width: 50%; /* Adjust image size */
+        height: auto;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan pada gambar */
+        transition: transform 0.3s; /* Transisi untuk efek hover */
+      }
+      .menu-item img:hover {
+        transform: scale(1.05); /* Efek zoom saat hover */
+      }
+      .menu-item h2 {
+        margin: 10px 0 5px;
+        font-size: 18px;
+        color: #555;
+      }
+      .menu-item p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #777;
+      }
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .quantity-control button {
+        background-color: #800000; /* Warna merah marun */
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .quantity-control button:hover {
+        background-color: #600000; /* Warna merah marun lebih gelap */
+      }
+      .quantity-control input {
+        width: 40px;
+        text-align: center;
+        margin: 0 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      .add-to-cart-button {
+        background-color: #800000; /* Warna merah marun */
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+        width: 100%;
+      }
+      .add-to-cart-button:hover {
+        background-color: #600000; /* Warna merah marun lebih gelap */
+      }
+      .cart-items {
+        margin-top: 20px;
+        display: none; /* Sembunyikan keranjang pesanan secara default */
+      }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .cart-item button {
+        background-color: #ff4d4d;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .cart-item button:hover {
+        background-color: #cc0000;
+      }
+      .delivery-options {
+        margin-top: 20px;
+      }
+      .delivery-options label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      .delivery-options input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .checkout-button {
+        background-color: #800000; /* Warna merah marun */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .checkout-button:hover {
+        background-color: #600000; /* Warna merah marun lebih gelap */
+      }
+
+      /* Pop-up Styles */
+      .popup {
+        display: none; /* Sembunyikan pop-up secara default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Latar belakang buram */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Pastikan pop-up di atas elemen lainnya */
+      }
+      .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+      .popup-content button {
+        background-color: #ff4d4d; /* Warna merah marun */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .popup-content button:hover {
+        background-color: #cc0000; /* Warna merah marun lebih gelap */
+      }
+
+      /* Catatan */
+      .note {
+        margin-top: 10px;
+        display: none; /* Sembunyikan catatan secara default */
+      }
+      .note textarea {
+        width: 100%;
+        height: 60px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      /* Responsivitas */
+      @media (max-width: 768px) {
+        .menu-item img {
+          width: 80%; /* Ukuran gambar lebih besar di perangkat kecil */
+        }
+        .header img {
+          width: 60px; /* Ukuran logo lebih kecil di perangkat kecil */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="Maskot PM.png" alt="" />
+      <div>
+        <h1>PM Fried Chicken</h1>
+        <div class="slogan">Hemat dan Bergizi</div>
+      </div>
+    </div>
+
+    <!-- Menu Items -->
+    <div class="menu-item">
+      <img src="Fried Chicken.png" alt="" />
+      <h2>Fried Chicken</h2>
+      <p>Rp 9.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('fried-chicken-qty', -1)">-</button>
+        <input
+          type="number"
+          id="fried-chicken-qty"
+          min="0"
+          value="0"
+          readonly
+        />
+        <button onclick="updateQuantity('fried-chicken-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Fried Chicken', 9000, 'fried-chicken-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Geprek.png" alt="" />
+      <h2>Ayam Geprek</h2>
+      <p>Rp 12.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('ayam-geprek-qty', -1)">-</button>
+        <input type="number" id="ayam-geprek-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('ayam-geprek-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Ayam Geprek', 12000, 'ayam-geprek-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Paket A.png" alt="" />
+      <h2>Paket A (Ayam + Nasi)</h2>
+      <p>Rp 12.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('paket-a-qty', -1)">-</button>
+        <input type="number" id="paket-a-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('paket-a-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Paket A (Ayam + Nasi)', 12000, 'paket-a-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Paket B.png" alt="" />
+      <h2>Paket B (Ayam + Nasi + Es Teh)</h2>
+      <p>Rp 15.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('paket-b-qty', -1)">-</button>
+        <input type="number" id="paket-b-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('paket-b-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Paket B (Ayam + Nasi + Es Teh)', 15000, 'paket-b-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Paket C.png" alt="" />
+      <h2>Paket C (Ayam Geprek + Nasi)</h2>
+      <p>Rp 15.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('paket-c-qty', -1)">-</button>
+        <input type="number" id="paket-c-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('paket-c-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Paket C (Ayam Geprek + Nasi)', 15000, 'paket-c-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Paket D.png" alt="" />
+      <h2>Paket D (Ayam Geprek + Nasi + Es Teh)</h2>
+      <p>Rp 18.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('paket-d-qty', -1)">-</button>
+        <input type="number" id="paket-d-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('paket-d-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Paket D (Ayam Geprek + Nasi + Es Teh)', 18000, 'paket-d-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Nasi.png" alt="" />
+      <h2>Nasi</h2>
+      <p>Rp 3.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('nasi-qty', -1)">-</button>
+        <input type="number" id="nasi-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('nasi-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Nasi', 3000, 'nasi-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <div class="menu-item">
+      <img src="Es Teh.png" alt="" />
+      <h2>Es Teh</h2>
+      <p>Rp 3.000</p>
+      <div class="quantity-control">
+        <button onclick="updateQuantity('es-teh-qty', -1)">-</button>
+        <input type="number" id="es-teh-qty" min="0" value="0" readonly />
+        <button onclick="updateQuantity('es-teh-qty', 1)">+</button>
+      </div>
+      <button
+        class="add-to-cart-button"
+        onclick="addToCart('Es Teh', 3000, 'es-teh-qty')"
+      >
+        Tambah ke Keranjang
+      </button>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="cart-items" id="cart-items">
+      <h2>Keranjang Pesanan</h2>
+      <div id="cart-list"></div>
+      <div class="note" id="note">
+        <label for="note-text">Catatan untuk pesanan:</label>
+        <textarea
+          id="note-text"
+          placeholder="Masukkan catatan di sini..."
+        ></textarea>
+      </div>
+      <div class="delivery-options">
+        <label>
+          <input
+            type="radio"
+            name="delivery"
+            value="pickup"
+            checked
+            onchange="toggleAddressField()"
+          />
+          Dijemput
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="delivery"
+            value="delivery"
+            onchange="toggleAddressField()"
+          />
+          Dihantar
+        </label>
+        <input
+          type="text"
+          id="address"
+          placeholder="Masukkan alamat pengiriman"
+          style="display: none"
+        />
+        <button
+          onclick="getLocation()"
+          id="location-button"
+          style="
+            display: none;
+            margin-top: 10px;
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+        >
+          Ambil Lokasi Saya
+        </button>
+      </div>
+      <button class="checkout-button" onclick="checkout()">
+        Pesan via WhatsApp
+      </button>
+    </div>
+
+    <!-- Pop-up for Confirmation -->
+    <div class="popup" id="confirmation-popup">
+      <div class="popup-content">
+        <p>Apakah Anda yakin ingin menghapus item ini dari keranjang?</p>
+        <button id="confirm-remove" style="background-color: #ff4d4d">
+          Ya, Hapus
+        </button>
+        <button onclick="closePopup()" style="background-color: #800000">
+          Batal
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let cart = [];
+      let itemToRemoveIndex = null; // Menyimpan index item yang akan dihapus
+
+      function updateQuantity(id, change) {
+        const input = document.getElementById(id);
+        let newValue = parseInt(input.value) + change;
+        if (newValue < 0) newValue = 0; // Ubah minimum menjadi 0
+        input.value = newValue;
+      }
+
+      function addToCart(itemName, itemPrice, qtyId) {
+        const quantity = parseInt(document.getElementById(qtyId).value);
+
+        // Hanya tambahkan ke keranjang jika quantity lebih dari 0
+        if (quantity > 0) {
+          const existingItemIndex = cart.findIndex(
+            (item) => item.name === itemName
+          );
+
+          if (existingItemIndex > -1) {
+            // Jika item sudah ada, tambahkan jumlahnya
+            cart[existingItemIndex].quantity += quantity;
+          } else {
+            // Jika item belum ada, tambahkan item baru ke keranjang
+            const item = {
+              name: itemName,
+              price: itemPrice,
+              quantity: quantity,
+            };
+            cart.push(item);
+          }
+
+          updateCartList();
+          alert(`${itemName} (${quantity} porsi) ditambahkan ke keranjang!`);
+
+          // Tampilkan keranjang pesanan jika ada item
+          if (cart.length > 0) {
+            document.getElementById("cart-items").style.display = "block";
+            document.getElementById("note").style.display = "block"; // Tampilkan catatan
+          }
+
+          // Reset input quantity ke 0
+          document.getElementById(qtyId).value = 0;
+        } else {
+          alert("Jumlah pesanan tidak boleh 0!");
+        }
+      }
+
+      function updateCartList() {
+        const cartList = document.getElementById("cart-list");
+        cartList.innerHTML = "";
+
+        if (cart.length === 0) {
+          cartList.innerHTML = "<p>Keranjang kosong.</p>";
+          document.getElementById("cart-items").style.display = "none"; // Sembunyikan keranjang jika kosong
+          document.getElementById("note").style.display = "none"; // Sembunyikan catatan
+        } else {
+          cart.forEach((item, index) => {
+            const cartItem = document.createElement("div");
+            cartItem.className = "cart-item";
+            cartItem.innerHTML = `
+                        <span>${item.name} (${item.quantity} porsi) - Rp ${
+              item.price * item.quantity
+            }</span>
+                        <div class="quantity-control">
+                            <button onclick="updateCartItemQuantity(${index}, -1)">-</button>
+                            <input type="number" value="${
+                              item.quantity
+                            }" readonly>
+                            <button onclick="updateCartItemQuantity(${index}, 1)">+</button>
+                        </div>
+                    `;
+            cartList.appendChild(cartItem);
+          });
+        }
+      }
+
+      function updateCartItemQuantity(index, change) {
+        const item = cart[index];
+        const newQuantity = item.quantity + change;
+
+        if (newQuantity < 1) {
+          // Jika jumlah baru kurang dari 1, tampilkan pop-up konfirmasi
+          itemToRemoveIndex = index; // Simpan index item yang akan dihapus
+          document.getElementById("confirmation-popup").style.display = "flex";
+        } else {
+          // Update jumlah item
+          item.quantity = newQuantity;
+          updateCartList();
+        }
+      }
+
+      function closePopup() {
+        document.getElementById("confirmation-popup").style.display = "none";
+      }
+
+      document.getElementById("confirm-remove").onclick = function () {
+        removeFromCart(itemToRemoveIndex);
+        closePopup();
+      };
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartList();
+      }
+
+      function toggleAddressField() {
+        const addressField = document.getElementById("address");
+        const locationButton = document.getElementById("location-button");
+        const deliveryOption = document.querySelector(
+          'input[name="delivery"]:checked'
+        ).value;
+
+        if (deliveryOption === "delivery") {
+          addressField.style.display = "block";
+          locationButton.style.display = "block";
+        } else {
+          addressField.style.display = "none";
+          locationButton.style.display = "none";
+        }
+      }
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const addressField = document.getElementById("address");
+            addressField.value = `https://www.google.com/maps?q=${latitude},${longitude}`;
+          });
+        } else {
+          alert("Geolocation tidak didukung di browser ini.");
+        }
+      }
+
+      function checkout() {
+        const phoneNumber = "6283824787997";
+        const deliveryOption = document.querySelector(
+          'input[name="delivery"]:checked'
+        ).value;
+        const address = document.getElementById("address").value;
+        const note = document.getElementById("note-text").value; // Ambil catatan
+
+        let message = "Assalamulaikum, \nSaya mau pesan:\n \n";
+        let totalPrice = 0;
+
+        cart.forEach((item) => {
+          message += `- ${item.name} (${item.quantity} porsi) = Rp ${
+            item.price * item.quantity
+          }\n`;
+          totalPrice += item.price * item.quantity;
+        });
+
+        if (note) {
+          message += `\nCatatan: \n${note}\n`; // Tambahkan catatan ke pesan
+        }
+
+        message += `\nTotal Harga: Rp ${totalPrice}\n`;
+        message += `\nPesanan: ${
+          deliveryOption === "pickup" ? "Dijemput" : "Dihantar"
+        }\n`;
+
+        if (deliveryOption === "delivery" && address) {
+          message += `Alamat Pengiriman: ${address}\n`;
+        } else if (deliveryOption === "delivery" && !address) {
+          alert("Harap masukkan alamat pengiriman!");
+          return;
+        }
+
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(whatsappUrl, "_blank");
+      }
+    </script>
+  </body>
+</html>
