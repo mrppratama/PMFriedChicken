@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<htm lang="id">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -149,6 +149,7 @@
         border-radius: 5px;
         font-size: 16px;
       }
+
       .checkout-button {
         background-color: #800000;
         color: #fff;
@@ -198,9 +199,9 @@
         margin-top: 10px;
         display: none;
       }
-      .note textarea {
+      .note textarea,
+      .note input[type="text"] {
         width: 95%;
-        height: 60px;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
@@ -251,239 +252,707 @@
           font-size: 14px;
         }
       }
+      /* New styles for cover and navigation */
+      .cover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+      }
+      .cover img {
+        width: 200px;
+        animation: pulse 1s infinite;
+        cursor: pointer; /* Make the logo clickable */
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .nav-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: sticky;
+        top: 0;
+        background-color: #800000;
+        z-index: 1000;
+        padding: 10px 0;
+        width: 100%; /* membuat header penuh */
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .nav-header img {
+        width: 80px;
+        height: auto;
+        margin-right: 10px;
+      }
+      .nav-header h1 {
+        color: #ffffff;
+        margin: 0;
+        font-size: 24px;
+      }
+      .nav-header-slogan {
+        text-align: left;
+        color: #ffffff;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+      .navigation {
+        display: none;
+        text-align: center;
+      }
+      .navigation p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      .navigation button {
+        background-color: #800000;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 90px;
+        margin: 0 10px;
+      }
+      .navigation button:hover {
+        background-color: #600000;
+      }
+      .nav-item {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .nav-item:hover {
+        transform: translateY(-5px);
+      }
+      .nav-item img {
+        width: 95%;
+        height: auto;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 1%;
+      }
+      .nav-item h2 {
+        margin: 2px 0 2px;
+        font-size: 20px;
+        color: #000000;
+      }
+      .nav-item p {
+        margin: 2px 0 20px;
+        font-size: 12px;
+        color: #777;
+      }
+      .show-Menu-Makanan-button {
+        background-color: #800000;
+        color: #fff;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        width: 95%;
+      }
+      .show-Menu-Catering-button {
+        background-color: #800000;
+        color: #fff;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        width: 95%;
+      }
+      .menu-header {
+        display: flex;
+        height: 30%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: #800000; /* background color for the header */
+        color: white; /* text color for the header */
+        padding-bottom: 10px; /*padding for the header */
+        position: sticky; /* membuat header sticky */
+        top: 0; /* posisi sticky di atas */
+        width: 100%; /* membuat header penuh */
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000; /* memastikan header di atas konten lainnya */
+      }
+      .menu-header h1 {
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        font-size: 24px;
+        text-align: center; /* center the text */
+        flex-grow: 1; /* allow the title to take available space */
+      }
+      .menu-header .hamburger {
+        font-size: 20px; /* set font size for hamburger */
+        cursor: pointer; /* change cursor to pointer */
+        margin-right: 20px;
+      }
+      /* New styles for catering discount */
+      .discount-message {
+        color: red; /* color for discount message */
+        font-weight: bold; /* make the text bold */
+      }
+
+      .note textarea,
+      .note input[type="text"],
+      .delivery-options input[type="text"] {
+        width: 95%; /* Pastikan lebar input 100% dari kontainer */
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .note,
+      .delivery-options {
+        margin-top: 10px; /* Tambahkan margin untuk jarak */
+      }
+
+      @media (max-width: 768px) {
+        .note textarea,
+        .note input[type="text"],
+        .delivery-options input[type="text"] {
+          font-size: 14px; /* Sesuaikan ukuran font untuk perangkat kecil */
+        }
+      }
+
+      .note,
+      .delivery-options {
+        margin-top: 10px; /* Tambahkan margin untuk jarak */
+      }
     </style>
   </head>
   <body>
-    <div class="header">
-      <img src="Maskot PM.png" alt="" />
-      <div>
-        <h1>PM Fried Chicken</h1>
-        <div class="slogan">Hemat dan Bergizi</div>
+    <!-- Cover Page -->
+    <div class="cover" id="cover">
+      <img
+        src="Maskot PM.png"
+        alt="Logo PM Fried Chicken"
+        onclick="showNavigation()"
+      />
+    </div>
+
+    <!-- Navigation Page -->
+    <div class="navigation" id="navigation">
+      <div class="nav-header">
+        <img src="Maskot PM.png" alt="Logo PM Fried Chicken" />
+        <div>
+          <h1>PM Fried Chicken</h1>
+          <div class="nav-header-slogan">Hemat dan Bergizi</div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <img src="Menu Makanan.jpg" alt="" />
+        <h2>Pesan Makanan Lebih Mudah</h2>
+        <p>Pesan Kapan Saja dan Darimana Saja</p>
+        <button class="show-Menu-Makanan-button" onclick="showMenu()">
+          Pesan Makanan
+        </button>
+      </div>
+      <div class="nav-item">
+        <img src="Menu Catering.jpg" alt="" />
+        <h2>Pesan Catering Lebih Mudah</h2>
+        <p>Dapatakan Potongan Harga Spesial</p>
+        <button class="show-Menu-Catering-button" onclick="showCatering()">
+          Pesan Catering
+        </button>
       </div>
     </div>
 
     <!-- Menu Items -->
-    <div class="menu-item">
-      <img src="Fried Chicken.png" alt="" />
-      <h2>Fried Chicken</h2>
-      <p>Rp 9.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('fried-chicken-qty', -1)">-</button>
-        <input
-          type="number"
-          id="fried-chicken-qty"
-          min="0"
-          value="0"
-          readonly
-        />
-        <button onclick="updateQuantity('fried-chicken-qty', 1)">+</button>
+    <div id="menu" style="display: none">
+      <div class="menu-header">
+        <h1>Menu Makanan</h1>
+        <span class="hamburger" onclick="showNavigation()">☰</span>
       </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Fried Chicken', 9000, 'fried-chicken-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
 
-    <div class="menu-item">
-      <img src="Geprek.png" alt="" />
-      <h2>Ayam Geprek</h2>
-      <p>Rp 12.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('ayam-geprek-qty', -1)">-</button>
-        <input type="number" id="ayam-geprek-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('ayam-geprek-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Ayam Geprek', 12000, 'ayam-geprek-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <div class="menu-item">
-      <img src="Paket A.png" alt="" />
-      <h2>Paket A (Ayam + Nasi)</h2>
-      <p>Rp 12.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('paket-a-qty', -1)">-</button>
-        <input type="number" id="paket-a-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('paket-a-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Paket A (Ayam + Nasi)', 12000, 'paket-a-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <div class="menu-item">
-      <img src="Paket B.png" alt="" />
-      <h2>Paket B (Ayam + Nasi + Es Teh)</h2>
-      <p>Rp 15.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('paket-b-qty', -1)">-</button>
-        <input type="number" id="paket-b-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('paket-b-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Paket B (Ayam + Nasi + Es Teh)', 15000, 'paket-b-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <div class="menu-item">
-      <img src="Paket C.png" alt="" />
-      <h2>Paket C (Ayam Geprek + Nasi)</h2>
-      <p>Rp 15.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('paket-c-qty', -1)">-</button>
-        <input type="number" id="paket-c-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('paket-c-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Paket C (Ayam Geprek + Nasi)', 15000, 'paket-c-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <div class="menu-item">
-      <img src="Paket D.png" alt="" />
-      <h2>Paket D (Ayam Geprek + Nasi + Es Teh)</h2>
-      <p>Rp 18.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('paket-d-qty', -1)">-</button>
-        <input type="number" id="paket-d-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('paket-d-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Paket D (Ayam Geprek + Nasi + Es Teh)', 18000, 'paket-d-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <div class="menu-item">
-      <img src="Nasi.png" alt="" />
-      <h2>Nasi</h2>
-      <p>Rp 3.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('nasi-qty', -1)">-</button>
-        <input type="number" id="nasi-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('nasi-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Nasi', 3000, 'nasi-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <div class="menu-item">
-      <img src="Es Teh.png" alt="" />
-      <h2>Es Teh</h2>
-      <p>Rp 3.000</p>
-      <div class="quantity-control">
-        <button onclick="updateQuantity('es-teh-qty', -1)">-</button>
-        <input type="number" id="es-teh-qty" min="0" value="0" readonly />
-        <button onclick="updateQuantity('es-teh-qty', 1)">+</button>
-      </div>
-      <button
-        class="add-to-cart-button"
-        onclick="addToCart('Es Teh', 3000, 'es-teh-qty')"
-      >
-        Tambah ke Keranjang
-      </button>
-    </div>
-
-    <!-- Cart Items -->
-    <div class="cart-items" id="cart-items">
-      <h2>Keranjang Pesanan</h2>
-      <div id="cart-list"></div>
-      <div
-        id="total-price"
-        style="font-weight: bold; margin-top: 10px; margin-bottom: 20px"
-      >
-        Total Harga: Rp 0
-      </div>
-      <!-- Total Harga -->
-      <div class="note" id="note">
-        <label for="note-text">Catatan untuk pesanan:</label>
-        <textarea
-          id="note-text"
-          placeholder="Masukkan catatan di sini..."
-        ></textarea>
-      </div>
-      <div class="delivery-options">
-        <label>
+      <!-- Menu Items -->
+      <div class="menu-item">
+        <img src="Fried Chicken.png" alt="" />
+        <h2>Fried Chicken</h2>
+        <p>Rp 9.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('fried-chicken-qty', -1)">-</button>
           <input
-            type="radio"
-            name="delivery"
-            value="pickup"
-            checked
-            onchange="toggleAddressField()"
+            type="number"
+            id="fried-chicken-qty"
+            min="0"
+            value="0"
+            readonly
           />
-          Dijemput
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="delivery"
-            value="delivery"
-            onchange="toggleAddressField()"
-          />
-          Dihantar
-        </label>
-        <input
-          type="text"
-          id="address"
-          placeholder="Masukkan alamat pengiriman"
-          style="display: none"
-        />
+          <button onclick="updateQuantity('fried-chicken-qty', 1)">+</button>
+        </div>
         <button
-          onclick="getLocation()"
-          id="location-button"
-          style="
-            display: none;
-            margin-top: 10px;
-            margin-bottom: 30px;
-            background-color: #800000;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-          "
+          class="add-to-cart-button"
+          onclick="addToCart('Fried Chicken', 9000, 'fried-chicken-qty', 'food')"
         >
-          Lokasi Sekarang
+          Tambah ke Keranjang
         </button>
       </div>
-      <div style="margin-top: 5px">
-        <label for="payment-method">Metode Pembayaran:</label>
-        <select id="payment-method" onchange="updatePaymentMethod()">
-          <option value="cash">CASH</option>
-          <option value="transfer">TRANSFER</option>
-        </select>
-        <div id="account-info" style="display: none">
-          <p>Rekening:</p>
-          <ul>
-            <li>DANA: 083103027072 a.n. Abdul Mutolib</li>
-          </ul>
-          <p>Kirim Bukti Transfer Ke Admin</p>
+
+      <div class="menu-item">
+        <img src="Geprek.png" alt="" />
+        <h2>Ayam Geprek</h2>
+        <p>Rp 12.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('ayam-geprek-qty', -1)">-</button>
+          <input
+            type="number"
+            id="ayam-geprek-qty"
+            min="0"
+            value="0"
+            readonly
+          />
+          <button onclick="updateQuantity('ayam-geprek-qty', 1)">+</button>
         </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Ayam Geprek', 12000, 'ayam-geprek-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
       </div>
-      <button class="checkout-button" onclick="checkout()">
-        Pesan via WhatsApp
-      </button>
+
+      <div class="menu-item">
+        <img src="Paket A.png" alt="" />
+        <h2>Paket A (Ayam + Nasi)</h2>
+        <p>Rp 12.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('paket-a-qty', -1)">-</button>
+          <input type="number" id="paket-a-qty" min="0" value="0" readonly />
+          <button onclick="updateQuantity('paket-a-qty', 1)">+</button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket A (Ayam + Nasi)', 12000, 'paket-a-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Paket B.png" alt="" />
+        <h2>Paket B (Ayam + Nasi + Es Teh)</h2>
+        <p>Rp 15.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('paket-b-qty', -1)">-</button>
+          <input type="number" id="paket-b-qty" min="0" value="0" readonly />
+          <button onclick="updateQuantity('paket-b-qty', 1)">+</button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket B (Ayam + Nasi + Es Teh)', 15000, 'paket-b-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Paket C.png" alt="" />
+        <h2>Paket C (Ayam Geprek + Nasi)</h2>
+        <p>Rp 15.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('paket-c-qty', -1)">-</button>
+          <input type="number" id="paket-c-qty" min="0" value="0" readonly />
+          <button onclick="updateQuantity('paket-c-qty', 1)">+</button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket C (Ayam Geprek + Nasi)', 15000, 'paket-c-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Paket D.png" alt="" />
+        <h2>Paket D (Ayam Geprek + Nasi + Es Teh)</h2>
+        <p>Rp 18.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('paket-d-qty', -1)">-</button>
+          <input type="number" id="paket-d-qty" min="0" value="0" readonly />
+          <button onclick="updateQuantity('paket-d-qty', 1)">+</button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket D (Ayam Geprek + Nasi + Es Teh)', 18000, 'paket-d-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Nasi.png" alt="" />
+        <h2>Nasi</h2>
+        <p>Rp 3.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('nasi-qty', -1)">-</button>
+          <input type="number" id="nasi-qty" min="0" value="0" readonly />
+          <button onclick="updateQuantity('nasi-qty', 1)">+</button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Nasi', 3000, 'nasi-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Es Teh.png" alt="" />
+        <h2>Es Teh</h2>
+        <p>Rp 3.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantity('es-teh-qty', -1)">-</button>
+          <input type="number" id="es-teh-qty" min="0" value="0" readonly />
+          <button onclick="updateQuantity('es-teh-qty', 1)">+</button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Es Teh', 3000, 'es-teh-qty', 'food')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <!-- Cart Items -->
+      <div class="cart-items" id="cart-items">
+        <h2>Keranjang Pesanan Makanan</h2>
+        <div id="cart-list"></div>
+        <div
+          id="total-price"
+          style="font-weight: bold; margin-top: 10px; margin-bottom: 20px"
+        >
+          Total Harga: Rp 0
+        </div>
+        <div class="note" id="note">
+          <label for="note-text">Catatan untuk pesanan:</label>
+          <textarea
+            id="note-text"
+            placeholder="Masukkan catatan di sini..."
+          ></textarea>
+          <Nama for="customer-name">Nama Pemesan:</label>
+          <input
+            type="text"
+            id="customer-name"
+            placeholder="Masukkan nama"
+            required
+          />
+        </div>
+        <div class="delivery-options">
+          <label>
+            <input
+              type="radio"
+              name="delivery"
+              value="pickup"
+              checked
+              onchange="toggleAddressField()"
+            />
+            Dijemput
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="delivery"
+              value="delivery"
+              onchange="toggleAddressField()"
+            />
+            Dihantar
+          </label>
+          <input
+            type="text"
+            id="address"
+            placeholder="Masukkan alamat pengiriman"
+            style="display: none"
+          />
+          <button
+            onclick="getLocation()"
+            id="location-button"
+            style="
+              display: none;
+              margin-top: 10px;
+              margin-bottom: 30px;
+              background-color: #800000;
+              color: #fff;
+              border: none;
+              padding: 5px 10px;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          >
+            Lokasi Sekarang
+          </button>
+        </div>
+        <div style="margin-top: 5px">
+          <label for="payment-method">Metode Pembayaran:</label>
+          <select id="payment-method" onchange="updatePaymentMethod()">
+            <option value="cash">CASH</option>
+            <option value="transfer">TRANSFER</option>
+          </select>
+          <div id="account-info" style="display: none">
+            <p>Rekening:</p>
+            <ul>
+              <li>DANA: 083103027072 a.n. Abdul Mutolib</li>
+            </ul>
+            <p>Kirim Bukti Transfer Ke Admin</p>
+          </div>
+        </div>
+        <button class="checkout-button" onclick="checkout()">
+          Pesan via WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <!-- Catering Menu -->
+    <div id="catering" style="display: none">
+      <div class="menu-header">
+        <h1>Menu Catering</h1>
+        <span class="hamburger" onclick="showNavigation()">☰</span>
+      </div>
+
+      <!-- Catering Menu Items -->
+      <div class="menu-item">
+        <img src="Paket A.png" alt="" />
+        <h2>Paket A (Ayam + Nasi) (Catering)</h2>
+        <p>Rp 12.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantityCatering('paket-a-catering-qty', -5)">
+            -
+          </button>
+          <input
+            type="number"
+            id="paket-a-catering-qty"
+            min="0"
+            value="0"
+            readonly
+          />
+          <button onclick="updateQuantityCatering('paket-a-catering-qty', 5)">
+            +
+          </button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket A (Ayam + Nasi) (Catering)', 12000, 'paket-a-catering-qty', 'catering')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Paket B.png" alt="" />
+        <h2>Paket B (Ayam + Nasi + Es Teh) (Catering)</h2>
+        <p>Rp 15.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantityCatering('paket-b-catering-qty', -5)">
+            -
+          </button>
+          <input
+            type="number"
+            id="paket-b-catering-qty"
+            min="0"
+            value="0"
+            readonly
+          />
+          <button onclick="updateQuantityCatering('paket-b-catering-qty', 5)">
+            +
+          </button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket B (Ayam + Nasi + Es Teh) (Catering)', 15000, 'paket-b-catering-qty', 'catering')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Paket C.png" alt="" />
+        <h2>Paket C (Ayam Geprek + Nasi) (Catering)</h2>
+        <p>Rp 15.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantityCatering('paket-c-catering-qty', -5)">
+            -
+          </button>
+          <input
+            type="number"
+            id="paket-c-catering-qty"
+            min="0"
+            value="0"
+            readonly
+          />
+          <button onclick="updateQuantityCatering('paket-c-catering-qty', 5)">
+            +
+          </button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket C (Ayam Geprek + Nasi) (Catering)', 15000, 'paket-c-catering-qty', 'catering')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="menu-item">
+        <img src="Paket D.png" alt="" />
+        <h2>Paket D (Ayam Geprek + Nasi + Es Teh) (Catering)</h2>
+        <p>Rp 18.000</p>
+        <div class="quantity-control">
+          <button onclick="updateQuantityCatering('paket-d-catering-qty', -5)">
+            -
+          </button>
+          <input
+            type="number"
+            id="paket-d-catering-qty"
+            min="0"
+            value="0"
+            readonly
+          />
+          <button onclick="updateQuantityCatering('paket-d-catering-qty', 5)">
+            +
+          </button>
+        </div>
+        <button
+          class="add-to-cart-button"
+          onclick="addToCart('Paket D (Ayam Geprek + Nasi + Es Teh) (Catering)', 18000, 'paket-d-catering-qty', 'catering')"
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <!-- Cart Items -->
+      <div class="cart-items" id="cart-items-catering">
+        <h2>Keranjang Pesanan Catering</h2>
+        <div id="cart-list-catering"></div>
+        <div
+          id="total-price-catering"
+          style="font-weight: bold; margin-top: 10px; margin-bottom: 20px"
+        >
+          Total Harga: Rp 0
+        </div>
+        <div class="note" id="note-catering">
+          <label for="note-text-catering">Catatan untuk pesanan:</label>
+          <textarea
+            id="note-text-catering"
+            placeholder="Masukkan catatan di sini..."
+          ></textarea>
+          <label for="customer-name-catering">Nama Pemesan:</label>
+          <input
+            type="text"
+            id="customer-name-catering"
+            placeholder="Masukkan nama"
+            required
+          />
+        </div>
+        <div>
+          <label for="order-date">Tanggal Pesanan:</label>
+          <input type="date" id="order-date" required />
+        </div>
+        <div class="note" id="note">
+          <label for="note-text">Catatan untuk pesanan:</label>
+          <textarea
+            id="note-text"
+            placeholder="Masukkan catatan di sini..."
+            rows="4
+          "
+          ></textarea>
+          <label for="customer-name">Nama Pemesan:</label>
+          <input
+            type="text"
+            id="customer-name"
+            placeholder="Masukkan nama"
+            required
+          />
+        </div>
+
+        <div class="delivery-options">
+          <label>
+            <input
+              type="radio"
+              name="delivery-catering"
+              value="pickup"
+              checked
+              onchange="toggleAddressFieldCatering()"
+            />
+            Dijemput
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="delivery-catering"
+              value="delivery"
+              onchange="toggleAddressFieldCatering()"
+            />
+            Dihantar
+          </label>
+          <input
+            type="text"
+            id="address-catering"
+            placeholder="Masukkan alamat pengiriman"
+            style="display: none"
+          />
+          <button
+            onclick="getLocationCatering()"
+            id="location-button-catering"
+            style="
+              display: none; /* Tombol ini disembunyikan secara default */
+              margin-top: 10px;
+              margin-bottom: 30px;
+              background-color: #800000;
+              color: #fff;
+              border: none;
+              padding: 5px 10px;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          >
+            Lokasi Sekarang
+          </button>
+        </div>
+        <div style="margin-top: 5px">
+          <label for="payment-method-catering">Metode Pembayaran:</label>
+          <select
+            id="payment-method-catering"
+            onchange="updatePaymentMethodCatering()"
+          >
+            <option value="cash">CASH</option>
+            <option value="transfer">TRANSFER</option>
+          </select>
+          <div id="account-info-catering" style="display: none">
+            <p>Rekening:</p>
+            <ul>
+              <li>DANA: 083103027072 a.n. Abdul Mutolib</li>
+            </ul>
+            <p>Kirim Bukti Transfer Ke Admin</p>
+          </div>
+        </div>
+        <button class="checkout-button" onclick="checkoutCatering()">
+          Pesan via WhatsApp
+        </button>
+      </div>
     </div>
 
     <!-- Pop-up for Confirmation -->
@@ -507,93 +976,225 @@
     </div>
 
     <script>
-      let cart = [];
+      let cartFood = [];
+      let cartCatering = [];
       let itemToRemoveIndex = null;
+
+      // Show the cover page on load
+      window.onload = function () {
+        showCover();
+      };
+
+      function showCover() {
+        document.getElementById("cover").style.display = "flex";
+        document.getElementById("navigation").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("catering").style.display = "none";
+        document.getElementById("cart-items").style.display = "none";
+        document.getElementById("cart-items-catering").style.display = "none";
+      }
+
+      function showNavigation() {
+        document.getElementById("cover").style.display = "none";
+        document.getElementById("navigation").style.display = "block";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("catering").style.display = "none";
+        document.getElementById("cart-items").style.display = "none";
+        document.getElementById("cart-items-catering").style.display = "none";
+      }
+
+      function showMenu() {
+        document.getElementById("navigation").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+        document.getElementById("catering").style.display = "none";
+        document.getElementById("cart-items").style.display = "none";
+        document.getElementById("cart-items-catering").style.display = "none";
+      }
+
+      function showCatering() {
+        document.getElementById("navigation").style.display = "none";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("catering").style.display = "block";
+        document.getElementById("cart-items").style.display = "none";
+        document.getElementById("cart-items-catering").style.display = "none";
+      }
 
       function updateQuantity(id, change) {
         const input = document.getElementById(id);
         let newValue = parseInt(input.value) + change;
         if (newValue < 0) newValue = 0;
         input.value = newValue;
+        updateCartList("food");
       }
 
-      function addToCart(itemName, itemPrice, qtyId) {
+      function updateQuantityCatering(id, change) {
+        const input = document.getElementById(id);
+        let newValue = parseInt(input.value) + change;
+        if (newValue < 0) newValue = 0;
+        input.value = newValue;
+        updateCartList("catering");
+      }
+
+      function addToCart(itemName, itemPrice, qtyId, type) {
         const quantity = parseInt(document.getElementById(qtyId).value);
 
-        if (quantity > 0) {
-          const existingItemIndex = cart.findIndex(
-            (item) => item.name === itemName
-          );
+        if (type === "food") {
+          if (quantity > 0) {
+            const existingItemIndex = cartFood.findIndex(
+              (item) => item.name === itemName
+            );
 
-          if (existingItemIndex > -1) {
-            cart[existingItemIndex].quantity += quantity;
+            if (existingItemIndex > -1) {
+              cartFood[existingItemIndex].quantity += quantity;
+            } else {
+              const item = {
+                name: itemName,
+                price: itemPrice,
+                quantity: quantity,
+              };
+              cartFood.push(item);
+            }
+
+            updateCartList("food");
+            alert(`${itemName} (${quantity} porsi) ditambahkan ke keranjang!`);
+
+            if (cartFood.length > 0) {
+              document.getElementById("cart-items").style.display = "block";
+              document.getElementById("note").style.display = "block";
+            }
+
+            document.getElementById(qtyId).value = 0;
           } else {
-            const item = {
-              name: itemName,
-              price: itemPrice,
-              quantity: quantity,
-            };
-            cart.push(item);
+            alert("Jumlah pesanan tidak boleh 0!");
           }
+        } else if (type === "catering") {
+          if (quantity > 0) {
+            const existingItemIndex = cartCatering.findIndex(
+              (item) => item.name === itemName
+            );
 
-          updateCartList();
-          alert(`${itemName} (${quantity} porsi) ditambahkan ke keranjang!`);
+            if (existingItemIndex > -1) {
+              cartCatering[existingItemIndex].quantity += quantity;
+            } else {
+              const item = {
+                name: itemName,
+                price: itemPrice,
+                quantity: quantity,
+              };
+              cartCatering.push(item);
+            }
 
-          if (cart.length > 0) {
-            document.getElementById("cart-items").style.display = "block";
-            document.getElementById("note").style.display = "block";
+            updateCartList("catering");
+            alert(`${itemName} (${quantity} porsi) ditambahkan ke keranjang!`);
+
+            if (cartCatering.length > 0) {
+              document.getElementById("cart-items-catering").style.display =
+                "block";
+              document.getElementById("note-catering").style.display = "block";
+              document.getElementById().style.display = "block"; // Show location button
+            }
+
+            document.getElementById(qtyId).value = 0;
+          } else {
+            alert("Jumlah pesanan tidak boleh 0!");
           }
-
-          document.getElementById(qtyId).value = 0;
-        } else {
-          alert("Jumlah pesanan tidak boleh 0!");
         }
       }
 
-      function updateCartList() {
-        const cartList = document.getElementById("cart-list");
-        const totalPriceElement = document.getElementById("total-price");
-        cartList.innerHTML = "";
-        let totalPrice = 0;
+      function updateCartList(type) {
+        if (type === "food") {
+          const cartList = document.getElementById("cart-list");
+          const totalPriceElement = document.getElementById("total-price");
+          cartList.innerHTML = "";
+          let totalPrice = 0;
 
-        if (cart.length === 0) {
-          cartList.innerHTML = "<p>Keranjang kosong.</p>";
-          document.getElementById("cart-items").style.display = "none";
-          document.getElementById("note").style.display = "none";
-          totalPriceElement.innerText = "Total Harga: Rp 0";
-        } else {
-          cart.forEach((item, index) => {
-            const cartItem = document.createElement("div");
-            cartItem.className = "cart-item";
-            cartItem.innerHTML = `
-                        <span>${item.name} (${item.quantity} porsi) - Rp ${
-              item.price * item.quantity
-            }</span>
-                        <div class="quantity-control">
-                            <button onclick="updateCartItemQuantity(${index}, -1)">-</button>
-                            <input type="number" value="${
-                              item.quantity
-                            }" readonly>
-                            <button onclick="updateCartItemQuantity(${index}, 1)">+</button>
-                        </div>
-                    `;
-            cartList.appendChild(cartItem);
-            totalPrice += item.price * item.quantity;
-          });
-          totalPriceElement.innerText = `Total Harga: Rp ${totalPrice}`;
+          if (cartFood.length === 0) {
+            cartList.innerHTML = "<p>Keranjang kosong.</p>";
+            document.getElementById("cart-items").style.display = "none";
+            document.getElementById("note").style.display = "none";
+            totalPriceElement.innerText = "Total Harga: Rp 0";
+          } else {
+            cartFood.forEach((item, index) => {
+              const cartItem = document.createElement("div");
+              cartItem.className = "cart-item";
+              cartItem.innerHTML = `
+                <span>${item.name} (${item.quantity} porsi) - Rp ${
+                item.price * item.quantity
+              }</span>
+                <div class="quantity-control">
+                  <button onclick="updateCartItemQuantity(${index}, -1, 'food')">-</button>
+                  <input type="number" value="${item.quantity}" readonly>
+                  <button onclick="updateCartItemQuantity(${index}, 1, 'food')">+</button>
+                </div>
+              `;
+              cartList.appendChild(cartItem);
+              totalPrice += item.price * item.quantity;
+            });
+            totalPriceElement.innerText = `Total Harga: Rp ${totalPrice}`;
+            applyDiscountFood();
+          }
+        } else if (type === "catering") {
+          const cartList = document.getElementById("cart-list-catering");
+          const totalPriceElement = document.getElementById(
+            "total-price-catering"
+          );
+          cartList.innerHTML = "";
+          let totalPrice = 0;
+
+          if (cartCatering.length === 0) {
+            cartList.innerHTML = "<p>Keranjang kosong.</p>";
+            document.getElementById("cart-items-catering").style.display =
+              "none";
+            document.getElementById("note-catering").style.display = "none";
+            totalPriceElement.innerText = "Total Harga: Rp 0";
+          } else {
+            cartCatering.forEach((item, index) => {
+              const cartItem = document.createElement("div");
+              cartItem.className = "cart-item";
+              cartItem.innerHTML = `
+                <span>${item.name} (${item.quantity} porsi) - Rp ${
+                item.price * item.quantity
+              }</span>
+                <div class="quantity-control">
+                  <button onclick="updateCartItemQuantity(${index}, -5, 'catering')">-</button>
+                  <input type="number" value="${item.quantity}" readonly>
+                  <button onclick="updateCartItemQuantity(${index}, 5, 'catering')">+</button>
+                </div>
+              `;
+              cartList.appendChild(cartItem);
+              totalPrice += item.price * item.quantity;
+            });
+            totalPriceElement.innerText = `Total Harga: Rp ${totalPrice}`;
+            applyDiscountCatering();
+          }
         }
       }
 
-      function updateCartItemQuantity(index, change) {
-        const item = cart[index];
-        const newQuantity = item.quantity + change;
+      function updateCartItemQuantity(index, change, type) {
+        if (type === "food") {
+          const item = cartFood[index];
+          const newQuantity = item.quantity + change;
 
-        if (newQuantity < 1) {
-          itemToRemoveIndex = index;
-          document.getElementById("confirmation-popup").style.display = "flex";
-        } else {
-          item.quantity = newQuantity;
-          updateCartList();
+          if (newQuantity < 1) {
+            itemToRemoveIndex = index;
+            document.getElementById("confirmation-popup").style.display =
+              "flex";
+          } else {
+            item.quantity = newQuantity;
+            updateCartList("food");
+          }
+        } else if (type === "catering") {
+          const item = cartCatering[index];
+          const newQuantity = item.quantity + change;
+
+          if (newQuantity < 1) {
+            itemToRemoveIndex = index;
+            document.getElementById("confirmation-popup").style.display =
+              "flex";
+          } else {
+            item.quantity = newQuantity;
+            updateCartList("catering");
+          }
         }
       }
 
@@ -607,8 +1208,13 @@
       };
 
       function removeFromCart(index) {
-        cart.splice(index, 1);
-        updateCartList();
+        if (cartFood.length > 0) {
+          cartFood.splice(index, 1);
+          updateCartList("food");
+        } else if (cartCatering.length > 0) {
+          cartCatering.splice(index, 1);
+          updateCartList("catering");
+        }
       }
 
       function toggleAddressField() {
@@ -635,11 +1241,82 @@
             const addressField = document.getElementById("address");
             addressField.value = `https://www.google.com/maps?q=${latitude},${longitude}`;
           });
+        } else alert("Geolocation tidak didukung di browser ini.");
+      }
+
+      function toggleAddressFieldCatering() {
+        const addressField = document.getElementById("address-catering");
+        const locationButton = document.getElementById(
+          "location-button-catering"
+        );
+        const deliveryOption = document.querySelector(
+          'input[name="delivery-catering"]:checked'
+        ).value;
+
+        if (deliveryOption === "delivery") {
+          addressField.style.display = "block"; // Tampilkan field alamat
+          locationButton.style.display = "block"; // Tampilkan tombol lokasi
+        } else {
+          addressField.style.display = "none"; // Sembunyikan field alamat
+          locationButton.style.display = "none"; // Sembunyikan tombol lokasi
+        }
+      }
+
+      function getLocationCatering() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const addressField = document.getElementById("address-catering");
+            addressField.value = `https://www.google.com/maps?q=${latitude},${longitude}`;
+          });
         } else {
           alert("Geolocation tidak didukung di browser ini.");
         }
       }
 
+      function updatePaymentMethodCatering() {
+        const paymentMethod = document.getElementById(
+          "payment-method-catering"
+        ).value;
+        const accountInfo = document.getElementById("account-info-catering");
+
+        if (paymentMethod === "transfer") {
+          accountInfo.style.display = "block";
+        } else {
+          accountInfo.style.display = "none";
+        }
+      }
+
+      function checkoutCatering() {
+        // Implementasi logika checkout untuk catering
+        const customerName = document.getElementById(
+          "customer-name-catering"
+        ).value;
+        const orderDate = document.getElementById("order-date").value;
+        const note = document.getElementById("note-text-catering").value;
+        const address = document.getElementById("address-catering").value;
+        const paymentMethod = document.getElementById(
+          "payment-method-catering"
+        ).value;
+
+        // Lakukan validasi dan kirim data ke WhatsApp atau server
+        if (
+          !customerName ||
+          !orderDate ||
+          (paymentMethod === "delivery" && !address)
+        ) {
+          alert("Silakan lengkapi semua informasi yang diperlukan.");
+          return;
+        }
+
+        // Contoh URL WhatsApp untuk mengirim pesan
+        const message = `Pesanan Catering:\nNama: ${customerName}\nTanggal: ${orderDate}\nCatatan: ${note}\nAlamat: ${address}\nMetode Pembayaran: ${paymentMethod}`;
+        const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(
+          message
+        )}`; // Ganti dengan nomor WhatsApp Anda
+        window.open(whatsappUrl, "_blank");
+      }
       function checkout() {
         const phoneNumber = "6285713329062";
         const deliveryOption = document.querySelector(
@@ -647,13 +1324,19 @@
         ).value;
         const address = document.getElementById("address").value;
         const note = document.getElementById("note-text").value;
+        const customerName = document.getElementById("customer-name").value;
         const paymentMethod = document.getElementById("payment-method").value;
+
+        if (!customerName) {
+          alert("Nama pemesan wajib diisi!");
+          return;
+        }
 
         let message =
           "Assalamulaikum Warohmatullahi Wabarokatuh Bu, \nSaya mau pesan:\n \n";
         let totalPrice = 0;
 
-        cart.forEach((item) => {
+        cartFood.forEach((item) => {
           message += `- ${item.name} (${item.quantity} porsi) = Rp ${
             item.price * item.quantity
           }\n`;
@@ -666,6 +1349,73 @@
           message += `\nCatatan: \n${note}\n`;
         }
 
+        message += `\nNama Pemesan: ${customerName}\n`;
+        message += `\nMetode Pembayaran: ${
+          paymentMethod === "cash" ? "CASH" : "TRANSFER"
+        }\n`;
+        message += `\nPesanan: ${
+          deliveryOption === "pickup" ? "Dijemput" : "Dihantar"
+        }\n`;
+
+        if (deliveryOption === "delivery" && address) {
+          message += `\nAlamat Pengiriman: \n${address}\n`;
+        } else if (deliveryOption === "delivery" && !address) {
+          alert("Harap masukkan alamat pengiriman!");
+          return;
+        }
+
+        message += `\nTerimakasih\n`;
+
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(whatsappUrl, "_blank");
+      }
+
+      function checkoutCatering() {
+        const phoneNumber = "6285713329062";
+        const deliveryOption = document.querySelector(
+          'input[name="delivery-catering"]:checked'
+        ).value;
+        const address = document.getElementById("address-catering").value;
+        const note = document.getElementById("note-text-catering").value;
+        const customerName = document.getElementById(
+          "customer-name-catering"
+        ).value;
+        const paymentMethod = document.getElementById(
+          "payment-method-catering"
+        ).value;
+        const orderDate = document.getElementById("order-date").value;
+
+        if (!customerName) {
+          alert("Nama pemesan wajib diisi!");
+          return;
+        }
+
+        if (!orderDate) {
+          alert("Tanggal pesanan wajib diisi!");
+          return;
+        }
+
+        let message =
+          "Assalamulaikum Warohmatullahi Wabarokatuh Bu, \nSaya mau pesan Catering:\n \n";
+        let totalPrice = 0;
+
+        cartCatering.forEach((item) => {
+          message += `- ${item.name} (${item.quantity} porsi) = Rp ${
+            item.price * item.quantity
+          }\n`;
+          totalPrice += item.price * item.quantity;
+        });
+
+        message += `\nTotal Harga: Rp ${totalPrice}\n`;
+
+        if (note) {
+          message += `\nCatatan: \n${note}\n`;
+        }
+
+        message += `\nNama Pemesan: ${customerName}\n`;
+        message += `\nTanggal Pesanan: ${orderDate}\n`;
         message += `\nMetode Pembayaran: ${
           paymentMethod === "cash" ? "CASH" : "TRANSFER"
         }\n`;
@@ -694,6 +1444,79 @@
         accountInfo.style.display =
           paymentMethod === "transfer" ? "block" : "none";
       }
+
+      function updatePaymentMethodCatering() {
+        const paymentMethod = document.getElementById(
+          "payment-method-catering"
+        ).value;
+        const accountInfo = document.getElementById("account-info-catering");
+        accountInfo.style.display =
+          paymentMethod === "transfer" ? "block" : "none";
+      }
+
+      function applyDiscountCatering() {
+        const totalQuantity = cartCatering.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
+        const discountMessage = document.createElement("div");
+        discountMessage.className = "discount-message";
+        let discount = 0;
+
+        if (totalQuantity > 150) {
+          discount = 1000; // Diskon Rp 1000 per pcs
+        } else if (totalQuantity > 75) {
+          discount = 500; // Diskon Rp 500 per pcs
+        }
+
+        const totalPriceElement = document.getElementById(
+          "total-price-catering"
+        );
+        const totalPrice = cartCatering.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+        const discountedPrice = totalPrice - discount * totalQuantity;
+
+        discountMessage.innerText =
+          discount > 0
+            ? `Diskon: Rp ${discount} per pcs untuk ${totalQuantity} pcs`
+            : "";
+        document
+          .getElementById("cart-list-catering")
+          .appendChild(discountMessage);
+        totalPriceElement.innerText = `Total Harga: Rp ${discountedPrice}`;
+      }
+
+      function applyDiscountFood() {
+        const totalQuantity = cartFood.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
+        const discountMessage = document.createElement("div");
+        discountMessage.className = "discount-message";
+        let discount = 0;
+
+        if (totalQuantity > 150) {
+          discount = 1000; // Diskon Rp 1000 per pcs
+        } else if (totalQuantity > 75) {
+          discount = 500; // Diskon Rp 500 per pcs
+        }
+
+        const totalPriceElement = document.getElementById("total-price");
+        const totalPrice = cartFood.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+        const discountedPrice = totalPrice - discount * totalQuantity;
+
+        discountMessage.innerText =
+          discount > 0
+            ? `Diskon: Rp ${discount} per pcs untuk ${totalQuantity} pcs`
+            : "";
+        document.getElementById("cart-list").appendChild(discountMessage);
+        totalPriceElement.innerText = `Total Harga: Rp ${discountedPrice}`;
+      }
     </script>
   </body>
-</htm>
+</html>
